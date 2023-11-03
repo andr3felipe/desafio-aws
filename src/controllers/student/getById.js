@@ -1,7 +1,6 @@
-import { Request, Response } from "express";
-import { pool } from "../../lib/postgres";
+import { pool } from "../../lib/postgres.js";
 
-export const getById = async (req: Request, res: Response) => {
+export const getById = async (req, res) => {
   const { id } = req.params;
   try {
     const { rows } = await pool.query("SELECT * FROM students WHERE id = $1", [

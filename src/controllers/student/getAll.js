@@ -1,7 +1,6 @@
-import { Request, Response } from "express";
-import { pool } from "../../lib/postgres";
+import { pool } from "../../lib/postgres.js";
 
-export const getAll = async (req: Request, res: Response) => {
+export const getAll = async (req, res) => {
   try {
     const { rows } = await pool.query("SELECT * FROM students");
 

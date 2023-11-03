@@ -1,7 +1,6 @@
-import { Request, Response } from "express";
-import { pool } from "../../lib/postgres";
+import { pool } from "../../lib/postgres.js";
 
-export const create = async (req: Request, res: Response) => {
+export const create = async (req, res) => {
   try {
     const {
       nome,
