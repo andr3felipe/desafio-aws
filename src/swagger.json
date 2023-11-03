@@ -1,0 +1,243 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "Desafio Generation & iFood | AWS",
+    "description": "CRUD Alunos",
+    "contact": {
+      "email": "andre.felipe_680@hotmail.com"
+    },
+    "version": "1.0.0"
+  },
+  "servers": [
+    {
+      "url": "http://localhost:3333/v1",
+      "description": "API de test"
+    }
+  ],
+  "paths": {
+    "/alunos": {
+      "post": {
+        "summary": "Cadastro de aluno",
+        "description": "Essa rota será responsavel por cadastrar um aluno",
+        "tags": [
+          "Alunos"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Aluno"
+              },
+              "examples": {
+                "Aluno": {
+                  "value": {
+                    "nome": "André Felipe",
+                    "idade": 26,
+                    "notaDoPrimeiroSemestre": 10,
+                    "notaDoSegundoSemestre": 10,
+                    "nomeDoProfessor": "Carlos Abreu",
+                    "numeroDaSala": "2b"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Aluno cadastrado.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "$ref": "#/components/schemas/Aluno"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Erro de validação."
+          }
+        }
+      },
+      "get": {
+        "description": "Lista todos os alunos",
+        "summary": "Lista todos os alunos",
+        "tags": [
+          "Alunos"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "items": {
+                    "$ref": "#/components/schemas/Aluno"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/alunos/{id}": {
+      "get": {
+        "description": "Busca de um aluno pelo id",
+        "summary": "Busca de um aluno pelo id",
+        "tags": [
+          "Alunos"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "Busca do aluno pelo id",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "$ref": "#/components/schemas/Aluno"
+                }
+              }
+            }
+          }
+        }
+      },
+      "put": {
+        "description": "Alterar um aluno pelo id",
+        "summary": "Alterar um aluno pelo id",
+        "tags": [
+          "Alunos"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "Alterar um aluno pelo id",
+            "required": true
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Aluno"
+              },
+              "examples": {
+                "Aluno": {
+                  "value": {
+                    "nome": "Carlos Analister",
+                    "idade": 31,
+                    "notaDoPrimeiroSemestre": 7,
+                    "notaDoSegundoSemestre": 8,
+                    "nomeDoProfessor": "Carlos Abreu",
+                    "numeroDaSala": "5c"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "$ref": "#/components/schemas/Aluno"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "mensagem": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "description": "Excluir um aluno pelo id",
+        "summary": "Excluir um aluno pelo id",
+        "tags": [
+          "Alunos"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "Excluir um aluno pelo id",
+            "required": true
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "No content"
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "mensagem": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "Aluno": {
+        "type": "object",
+        "properties": {
+          "nome": {
+            "type": "string"
+          },
+          "idade": {
+            "type": "number"
+          },
+          "notaDoPrimeiroSemestre": {
+            "type": "number"
+          },
+          "notaDoSegundoSemestre": {
+            "type": "number"
+          },
+          "nomeDoProfessor": {
+            "type": "string"
+          },
+          "numeroDaSala": {
+            "type": "string"
+          }
+        }
+      }
+    }
+  }
+}
