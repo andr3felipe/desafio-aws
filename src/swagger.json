@@ -10,7 +10,7 @@
   },
   "servers": [
     {
-      "url": "http://localhost:3333/v1",
+      "url": "https://andre-felipe.cyclic.app/v1",
       "description": "API de test"
     }
   ],
